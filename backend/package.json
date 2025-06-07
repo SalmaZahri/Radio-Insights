@@ -8,7 +8,7 @@
     "start": "node --max-old-space-size=4096 index.js",
     "dev": "nodemon --max-old-space-size=4096 index.js"
   },
-  "author": "TonNomIci",
+  "author": "Salma Zahri",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.8.4",
