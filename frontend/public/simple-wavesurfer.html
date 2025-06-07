@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple WaveSurfer Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .player-container {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        #waveform {
+            width: 100%;
+            height: 100px;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+        .controls {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 8px 16px;
+            background: #4F46E5;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #4338CA;
+        }
+        button:disabled {
+            background: #9CA3AF;
+            cursor: not-allowed;
+        }
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+        .error {
+            background: #FEE2E2;
+            color: #B91C1C;
+        }
+        .loading {
+            background: #EFF6FF;
+            color: #1E40AF;
+        }
+        select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simple WaveSurfer Test</h1>
+    
+    <div>
+        <label for="audioSelect">Select Audio File:</label>
+        <select id="audioSelect">
+            <option value="">-- Select an audio file --</option>
+            <option value="/uploads/001a231d.wav.mp3">001a231d.wav.mp3</option>
+            <option value="/uploads/001a26a1.wav.mp3">001a26a1.wav.mp3</option>
+            <option value="/uploads/001a26c6.wav.mp3">001a26c6.wav.mp3</option>
+            <option value="/uploads/001a26fc.wav.mp3">001a26fc.wav.mp3</option>
+            <option value="/uploads/001a2b91.wav.mp3">001a2b91.wav.mp3</option>
+            <option value="/uploads/001a38fc.wav.mp3">001a38fc.wav.mp3</option>
+            <option value="/uploads/001a6d65.wav.mp3">001a6d65.wav.mp3</option>
+            <option value="/uploads/001a9d68.wav.mp3">001a9d68.wav.mp3</option>
+            <option value="/uploads/001a9d8f.wav.mp3">001a9d8f.wav.mp3</option>
+            <option value="/uploads/0042a078.wav.mp3">0042a078.wav.mp3</option>
+            <option value="/uploads/0042f4a5.wav.mp3">0042f4a5.wav.mp3</option>
+            <option value="/uploads/0A4AF06C.wav.mp3">0A4AF06C.wav.mp3</option>
+            <option value="/uploads/0AA83AD1.wav.mp3">0AA83AD1.wav.mp3</option>
+        </select>
+    </div>
+    
+    <div class="player-container">
+        <h2>WaveSurfer Player</h2>
+        <div id="waveform"></div>
+        
+        <div class="controls">
+            <button id="playBtn" disabled>Play</button>
+            <button id="pauseBtn" disabled>Pause</button>
+            <button id="stopBtn" disabled>Stop</button>
+        </div>
+        
+        <div id="status" class="status loading">
+            Select an audio file to load
+        </div>
+    </div>
+    
+    <div class="player-container">
+        <h2>Standard HTML5 Audio (for comparison)</h2>
+        <audio id="standardAudio" controls></audio>
+    </div>
+    
+    <!-- Load WaveSurfer from CDN -->
+    <script src="https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.min.js"></script>
+    
+    <script>
+        // DOM elements
+        const waveformElement = document.getElementById('waveform');
+        const playBtn = document.getElementById('playBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const statusElement = document.getElementById('status');
+        const audioSelect = document.getElementById('audioSelect');
+        const standardAudio = document.getElementById('standardAudio');
+        
+        // Create WaveSurfer instance
+        const wavesurfer = WaveSurfer.create({
+            container: waveformElement,
+            waveColor: '#4F46E5',
+            progressColor: '#6366F1',
+            height: 80,
+            responsive: true,
+            barWidth: 2,
+            cursorWidth: 1,
+            normalize: true,
+            backend: 'WebAudio'
+        });
+        
+        // Event listeners
+        playBtn.addEventListener('click', () => {
+            wavesurfer.play();
+        });
+        
+        pauseBtn.addEventListener('click', () => {
+            wavesurfer.pause();
+        });
+        
+        stopBtn.addEventListener('click', () => {
+            wavesurfer.stop();
+        });
+        
+        audioSelect.addEventListener('change', (e) => {
+            const audioPath = e.target.value;
+            if (!audioPath) {
+                statusElement.textContent = 'Select an audio file to load';
+                statusElement.className = 'status loading';
+                playBtn.disabled = true;
+                pauseBtn.disabled = true;
+                stopBtn.disabled = true;
+                standardAudio.src = '';
+                return;
+            }
+            
+            // Update status
+            statusElement.textContent = 'Loading audio...';
+            statusElement.className = 'status loading';
+            
+            // Disable buttons while loading
+            playBtn.disabled = true;
+            pauseBtn.disabled = true;
+            stopBtn.disabled = true;
+            
+            // Get full URL (using either relative or absolute path)
+            const fullUrl = audioPath.startsWith('http') 
+                ? audioPath 
+                : window.location.origin + audioPath;
+            
+            console.log('Loading audio from:', fullUrl);
+            
+            // Load audio in WaveSurfer
+            wavesurfer.load(fullUrl);
+            
+            // Also load in standard audio element for comparison
+            standardAudio.src = fullUrl;
+        });
+        
+        // WaveSurfer events
+        wavesurfer.on('ready', () => {
+            statusElement.textContent = 'Audio loaded successfully!';
+            statusElement.className = 'status success';
+            
+            // Enable buttons
+            playBtn.disabled = false;
+            pauseBtn.disabled = false;
+            stopBtn.disabled = false;
+            
+            console.log('WaveSurfer ready, audio loaded successfully');
+        });
+        
+        wavesurfer.on('error', (err) => {
+            statusElement.textContent = `Error loading audio: ${err}`;
+            statusElement.className = 'status error';
+            console.error('WaveSurfer error:', err);
+        });
+        
+        wavesurfer.on('loading', (percent) => {
+            statusElement.textContent = `Loading audio: ${percent}%`;
+            console.log(`Loading: ${percent}%`);
+        });
+    </script>
+</body>
+</html>

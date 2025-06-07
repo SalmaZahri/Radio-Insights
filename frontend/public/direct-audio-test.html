@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direct Audio Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .audio-container {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        audio {
+            width: 100%;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Direct Audio Test</h1>
+    <p>This page tests direct access to audio files using the HTML audio element.</p>
+    
+    <div class="audio-container">
+        <h2>Audio File: 001a231d.wav.mp3</h2>
+        <audio controls>
+            <source src="/uploads/001a231d.wav.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <p>Source: <code>/uploads/001a231d.wav.mp3</code></p>
+    </div>
+    
+    <div class="audio-container">
+        <h2>Audio File: 001a26a1.wav.mp3</h2>
+        <audio controls>
+            <source src="/uploads/001a26a1.wav.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <p>Source: <code>/uploads/001a26a1.wav.mp3</code></p>
+    </div>
+    
+    <div class="audio-container">
+        <h2>Audio File with Full URL</h2>
+        <audio controls>
+            <source src="http://localhost:5000/uploads/001a231d.wav.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <p>Source: <code>http://localhost:5000/uploads/001a231d.wav.mp3</code></p>
+    </div>
+    
+    <div class="audio-container">
+        <h2>All Available Audio Files</h2>
+        <ul>
+            <li><a href="/uploads/001a231d.wav.mp3" target="_blank">001a231d.wav.mp3</a></li>
+            <li><a href="/uploads/001a26a1.wav.mp3" target="_blank">001a26a1.wav.mp3</a></li>
+            <li><a href="/uploads/001a26c6.wav.mp3" target="_blank">001a26c6.wav.mp3</a></li>
+            <li><a href="/uploads/001a26fc.wav.mp3" target="_blank">001a26fc.wav.mp3</a></li>
+            <li><a href="/uploads/001a2b91.wav.mp3" target="_blank">001a2b91.wav.mp3</a></li>
+            <li><a href="/uploads/001a38fc.wav.mp3" target="_blank">001a38fc.wav.mp3</a></li>
+            <li><a href="/uploads/001a6d65.wav.mp3" target="_blank">001a6d65.wav.mp3</a></li>
+            <li><a href="/uploads/001a9d68.wav.mp3" target="_blank">001a9d68.wav.mp3</a></li>
+            <li><a href="/uploads/001a9d8f.wav.mp3" target="_blank">001a9d8f.wav.mp3</a></li>
+            <li><a href="/uploads/0042a078.wav.mp3" target="_blank">0042a078.wav.mp3</a></li>
+            <li><a href="/uploads/0042f4a5.wav.mp3" target="_blank">0042f4a5.wav.mp3</a></li>
+            <li><a href="/uploads/0A4AF06C.wav.mp3" target="_blank">0A4AF06C.wav.mp3</a></li>
+            <li><a href="/uploads/0AA83AD1.wav.mp3" target="_blank">0AA83AD1.wav.mp3</a></li>
+        </ul>
+    </div>
+</body>
+</html>
