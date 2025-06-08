@@ -38,9 +38,9 @@ export function LoginForm({ className, ...props }) {
   return (
     <form onSubmit={handleSubmit} className={cn("flex flex-col gap-6", className)} {...props}>
       <div className="flex flex-col items-center gap-2 text-center">
-        <h1 className="text-2xl font-bold">Login to your account</h1>
+        <h1 className="text-2xl font-bold">Connectez-vous à votre compte</h1>
         <p className="text-balance text-sm text-muted-foreground">
-          Enter your email below to login to your account
+          Entrez votre email ci-dessous pour vous connecter à votre compte
         </p>
       </div>
 
@@ -52,8 +52,8 @@ export function LoginForm({ className, ...props }) {
 
       <div className="grid gap-6">
         <div className="grid gap-2">
-          <Label htmlFor="email">Email</Label>
-          <Input
+          <Label htmlFor="email">E-mail</Label>
+          <Input className="bg-white" 
             id="email"
             type="email"
             placeholder="exemple@example.com"
@@ -64,15 +64,10 @@ export function LoginForm({ className, ...props }) {
         </div>
         <div className="grid gap-2">
           <div className="flex items-center">
-            <Label htmlFor="password">Password</Label>
-            <a
-              href="#"
-              className="ml-auto text-sm underline-offset-4 hover:underline"
-            >
-              Forgot your password?
-            </a>
+            <Label htmlFor="password">Mot de passe</Label>
+            
           </div>
-          <Input
+          <Input className="bg-white" 
             id="password"
             type="password"
             required
@@ -81,7 +76,7 @@ export function LoginForm({ className, ...props }) {
           />
         </div>
         <Button type="submit" className="w-full">
-          Login
+          Se connecter
         </Button>
 
         
@@ -89,9 +84,9 @@ export function LoginForm({ className, ...props }) {
       </div>
 
       <div className="text-center text-sm">
-        Don&apos;t have an account?{" "}
+        Vous n'avez pas de compte ?{" "}
         <Link to="/register" className="underline underline-offset-4">
-          Sign up
+          Inscrivez-vous
         </Link>
       </div>
     </form>

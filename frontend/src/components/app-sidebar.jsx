@@ -105,18 +105,18 @@ export function AppSidebar({ ...props }) {
   };
 
   return (
-    <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
-        <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+    <Sidebar collapsible="icon" {...props} >
+      <SidebarHeader className="bg-[url('https://www.transparenttextures.com/patterns/climpek.png')] bg-center">
+        <h2 className="text-lg font-bold text-white dark:text-white outline-gray-800 outline p-2 text-center bg-gray-800 rounded-md">
           RadioInsights
         </h2>
       </SidebarHeader>
 
-      <SidebarContent>
+      <SidebarContent className="bg-[url('https://www.transparenttextures.com/patterns/climpek.png')] bg-center">
         <NavMain items={navItems} />
       </SidebarContent>
 
-      <SidebarFooter>
+      <SidebarFooter className="bg-[url('https://www.transparenttextures.com/patterns/climpek.png')] bg-center">
         <NavUser user={user} />
       </SidebarFooter>
     </Sidebar>

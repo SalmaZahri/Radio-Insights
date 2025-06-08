@@ -66,16 +66,16 @@ export function RegisterForm({ className, ...props }) {
       {...props}
     >
       <div className="flex flex-col items-center gap-2 text-center">
-        <h1 className="text-2xl font-bold">Sign up</h1>
+        <h1 className="text-2xl font-bold">S'inscrire</h1>
         <p className="text-balance text-sm text-muted-foreground">
-          Enter your informations below to sign up
+          Entrez vos informations ci-dessous pour vous inscrire
         </p>
       </div>
 
       <div className="grid gap-6">
         <div className="grid gap-2">
-          <Label htmlFor="username">Username</Label>
-          <Input
+          <Label htmlFor="username">Nom d'utilisateur</Label>
+          <Input className="bg-white"
             id="username"
             type="text"
             value={formData.username}
@@ -85,8 +85,8 @@ export function RegisterForm({ className, ...props }) {
         </div>
 
         <div className="grid gap-2">
-          <Label htmlFor="email">Email</Label>
-          <Input
+          <Label htmlFor="email">E-mail</Label>
+          <Input className="bg-white"
             id="email"
             type="email"
             value={formData.email}
@@ -96,8 +96,8 @@ export function RegisterForm({ className, ...props }) {
         </div>
 
         <div className="grid gap-2">
-          <Label htmlFor="password">Password</Label>
-          <Input
+          <Label htmlFor="password">Mot de passe</Label>
+          <Input className="bg-white"
             id="password"
             type="password"
             value={formData.password}
@@ -107,8 +107,8 @@ export function RegisterForm({ className, ...props }) {
         </div>
 
         <div className="grid gap-2">
-          <Label htmlFor="confirmPassword">Retype Password</Label>
-          <Input
+          <Label htmlFor="confirmPassword">Retaper le mot de passe</Label>
+          <Input className="bg-white"
             id="confirmPassword"
             type="password"
             value={formData.confirmPassword}
@@ -121,7 +121,7 @@ export function RegisterForm({ className, ...props }) {
         {success && <p className="text-sm text-green-500">{success}</p>}
 
         <Button type="submit" className="w-full">
-          Submit
+          Soumettre
         </Button>
       </div>
     </form>
